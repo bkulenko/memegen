@@ -77,10 +77,31 @@ class ValidatorTest(TestCase):
         with self.assertRaises(ValidationError):
             validated_data = self.validator.validate_mimetype(image_mime)
 
+    def test_should_raise_validation_error_on_text_too_long(self):
+
+        image_data = {"top_text": "Short text", "bottom_text": "Short text"}
+        validated_data = self.validator.validate_length(image_data)
+        self.assertEqual(validated_data, image_data)
+
+        image_data = {"top_text": "Text of reasonable length", "bottom_text": "Tex of reasonable length"}
+        validated_data = self.validator.validate_length(image_data)
+        self.assertEqual(validated_data, image_data)
+
+        image_data = {"top_text": "", "bottom_text": ""}
+        validated_data = self.validator.validate_length(image_data)
+        self.assertEqual(validated_data, image_data)
+
+        image_data = {
+            "top_text": "Text that is needleslly, overly long. It needs to be at the very least 51 characters long. I hope I already hit that limit.",
+            "bottom_text": "Text that is needleslly, overly long. It needs to be at the very least 51 characters long. I hope I already hit that limit.",
+        }
+        with self.assertRaises(ValidationError):
+            validated_data = self.validator.validate_length(image_data)
+
     def test_validator(self):
 
         image_data = {
-            'mimetype': 'image/jpeg', 
+            'mimetype': 'image/jpeg',
             'width': 800,
             'height': 600,
         }
