@@ -1,7 +1,12 @@
-from memegen.exceptions import ValidationError
+from generator_domain.exceptions import ValidationError
 
 
 class Validator(object):
+
+    def __call__(self, image_data):
+        self.validate_mimetype(image_data)
+        self.validate_ratio(image_data)
+        self.validate_size(image_data)
 
     def validate_ratio(self, image_data):
 
@@ -27,6 +32,16 @@ class Validator(object):
             raise ValidationError
 
         if width > size_max or height > size_max:
+            raise ValidationError
+
+        return image_data
+
+    def validate_mimetype(self, image_data):
+
+        mimetype = image_data.get('mimetype')
+        allowed_mimetypes = ['image/jpeg', 'image/png', 'image/gif']
+
+        if mimetype not in allowed_mimetypes:
             raise ValidationError
 
         return image_data

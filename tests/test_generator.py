@@ -1,28 +1,22 @@
 from unittest import TestCase
-from memegen.validator import Validator
-from memegen.exceptions import ValidationError
+from generator_domain.generator import Generator
+
+image_b64 = "/9j/4AAQSkZJRgABAQEBLAEsAAD//gATQ3JlYXRlZCB3aXRoIEdJTVD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCADIAMgDAREAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAGqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//EABQQAQAAAAAAAAAAAAAAAAAAAJD/2gAIAQEAAQUCHH//xAAUEQEAAAAAAAAAAAAAAAAAAACQ/9oACAEDAQE/ARx//8QAFBEBAAAAAAAAAAAAAAAAAAAAkP/aAAgBAgEBPwEcf//EABQQAQAAAAAAAAAAAAAAAAAAAJD/2gAIAQEABj8CHH//xAAUEAEAAAAAAAAAAAAAAAAAAACQ/9oACAEBAAE/IRx//9oADAMBAAIAAwAAABCSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSf/8QAFBEBAAAAAAAAAAAAAAAAAAAAkP/aAAgBAwEBPxAcf//EABQRAQAAAAAAAAAAAAAAAAAAAJD/2gAIAQIBAT8QHH//xAAUEAEAAAAAAAAAAAAAAAAAAACQ/9oACAEBAAE/EBx//9k="
 
 
 class GeneratorTest(TestCase):
 
-    def test_validate_ratio(self):
-        validator = Validator()
-        image_dimensions = {'width': 1920, 'height': 1080}
-        validated_data = validator.validate_ratio(image_dimensions)
-        self.assertEqual(validated_data, image_dimensions)
+    def setUp(self):
+        self.generator = Generator()
+        #self.font = open("../fonts/impact.ttf", "rb")
 
-        image_dimensions = {'width': 800, 'height': 600}
-        validated_data = validator.validate_ratio(image_dimensions)
-        self.assertEqual(validated_data, image_dimensions)
+    def test_should_return_same_image_when_no_text(self):
+        image_data = {
+            "base64": image_b64,
+            "top_text": None,
+            "bottom_text": None,
+            #'font': self.font,
+        }
+        processed_image = self.generator(image_data).get("base64")
+        self.assertEqual(processed_image, image_b64)
 
-        image_dimensions = {'width': 600, 'height': 600}
-        validated_data = validator.validate_ratio(image_dimensions)
-        self.assertEqual(validated_data, image_dimensions)
-
-        image_dimensions = {'width': 1, 'height': 15000}
-        with self.assertRaises(ValidationError):
-            validated_data = validator.validate_ratio(image_dimensions)
-
-        image_dimensions = {'width': 15000, 'height': 1}
-        with self.assertRaises(ValidationError):
-            validated_data = validator.validate_ratio(image_dimensions)
