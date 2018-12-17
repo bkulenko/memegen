@@ -23,7 +23,7 @@ class TestThumbnailer(TestCase):
 
         self.assertEqual(processed_data, image_data)
 
-    def test_should_return_200_image_if_given_larger(self):
+    def test_should_return_thumbnails_if_image_larger(self):
         image_data = {
             "width": 800,
             "height": 800,
