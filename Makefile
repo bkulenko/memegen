@@ -6,7 +6,7 @@ PROJECT_NAME=generator_domain
 test: clean-pyc 
 	@( \
 		source $(WORKON)/$(PROJECT_NAME)/bin/activate; \
-		python -m pytest $(TEST_PATH); \
+		py.test --cov-report term-missing --cov-config .coveragerc --cov .; \
 	)
 	
 clean-pyc:
