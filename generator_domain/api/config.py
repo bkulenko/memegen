@@ -5,6 +5,6 @@ class Config(object):
     validator_class = {"package": "Validator", "name": "generator_domain.validator"}
     generator_class = {"package": "Generator", "name": "generator_domain.generator"}
     thumbnailer_class = {"package": "Thumbnailer", "name": "generator_domain.thumbnailer"}
-    host = "localhost"
+    host = "0.0.0.0"
     port = 8000
     debug = True

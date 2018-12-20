@@ -34,5 +34,11 @@ run:
 		source $(WORKON)/$(PROJECT_NAME)/bin/activate; \
 		python run.py; \
 	)
+
+local:
+	@(\
+		docker build -t generator_domain; \
+		docker run -d -p 4000:8000 generator_domain; \
+	)
 	
 ci-unit: test codestyle

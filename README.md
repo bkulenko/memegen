@@ -45,4 +45,6 @@ Each domain can by ran as a discrete microservice. Each one includes a Makefile 
 
 - `make install` installs requirements outside of virtual environment
 
-- `make run` runs the service locally.
+- `make run` runs the service locally
+
+- `make local` runs the service in local docker container
