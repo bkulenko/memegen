@@ -47,4 +47,4 @@ Each domain can by ran as a discrete microservice. Each one includes a Makefile 
 
 - `make run` runs the service locally
 
-- `make local` runs the service in local docker container
+- `make local` rebuilds docker container and runs it locally on port 4000
