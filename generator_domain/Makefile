@@ -27,7 +27,7 @@ codestyle: clean-pyc
 	)
 
 install:
-	@pip install -r requirements.txt;
+	@pip install --user -r requirements.txt;
 
 run:
 	@(\
