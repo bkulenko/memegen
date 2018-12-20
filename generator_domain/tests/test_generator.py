@@ -28,12 +28,11 @@ class GeneratorTest(TestCase):
         processed_image = self.generator(self.image_data).get("base64")
         self.assertEqual(processed_image, image_b64)
 
-    def test_should_return_bytes_object_when_text_given(self):
+    def test_generates_new_image_when_given_text(self):
 
         self.image_data["top_text"] = "TEST TEST TEST"
         self.image_data["bottom_text"] = "TEST TEST TEST"
 
-        processed_image = self.generator(self.image_data)
+        self.generator(self.image_data)
 
-        self.assertTrue(isinstance(processed_image["base64"], bytes))
-        self.assertNotEqual(processed_image["base64"], image_b64)
+        self.assertNotEqual(self.image_data.get("base64"), image_b64)

@@ -6,7 +6,7 @@ PROJECT_NAME=generator_domain
 test: clean-pyc 
 	@( \
 		source $(WORKON)/$(PROJECT_NAME)/bin/activate; \
-		py.test --cov-report term-missing --cov-config .coveragerc --cov .; \
+		py.test --cov-report term-missing --cov-config setup.cfg --cov . --disable-pytest-warnings; \
 	)
 	
 clean-pyc:
@@ -23,10 +23,16 @@ develop:
 codestyle: clean-pyc 
 	@(\
 		source $(WORKON)/$(PROJECT_NAME)/bin/activate; \
-		python -m flake8; \
+		python -m flake8 || true; \
 	)
 
 install:
 	@pip install -r requirements.txt;
+
+run:
+	@(\
+		source $(WORKON)/$(PROJECT_NAME)/bin/activate; \
+		python run.py; \
+	)
 	
 ci-unit: test codestyle

@@ -30,7 +30,7 @@ class TestThumbnailer(TestCase):
             "base64": image_large_b64
         }
 
-        processed_data = self.thumbnailer._make_thumbnails(image_data)
+        self.thumbnailer(image_data)
 
-        self.assertTrue("base64_600_thumb" in processed_data.keys())
-        self.assertTrue("base64_200_thumb" in processed_data.keys())
+        self.assertTrue("base64_600_thumb" in image_data.keys())
+        self.assertTrue("base64_200_thumb" in image_data.keys())

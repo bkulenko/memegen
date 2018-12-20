@@ -32,10 +32,5 @@ class Thumbnailer(object):
 
                 base_image.thumbnail(thumbnail_size)
                 base_image.save(buffered_image, format="JPEG")
-                image_processed = base64.b64encode(buffered_image.getvalue())
+                image_processed = base64.urlsafe_b64encode(buffered_image.getvalue()).decode('ascii')
                 image_data["base64_{}_thumb".format(size)] = image_processed
-
-                with open("test_thumbnail_{}.jpeg".format(size), "wb") as file:
-                    file.write(buffered_image.getvalue())
-
-        return image_data

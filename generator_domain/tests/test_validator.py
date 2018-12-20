@@ -51,6 +51,10 @@ class ValidatorTest(TestCase):
         with self.assertRaises(ValidationError):
             validated_data = self.validator.validate_size(image_dimensions)
 
+        image_dimensions = {'width': 15000, 'height': 15000}
+        with self.assertRaises(ValidationError):
+            validated_data = self.validator.validate_size(image_dimensions)
+
     def test_validate_mimetype(self):
 
         image_mime = {'mimetype': 'image/jpeg'}

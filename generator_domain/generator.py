@@ -9,9 +9,6 @@ from PIL import Image, ImageFont, ImageDraw
 
 class Generator(object):
 
-    def __init__(self, **kwargs):
-        self._storage_adapter = kwargs.get("storage_adapter")
-
     def __call__(self, image_data):
         return self._add_text(image_data)
 
@@ -43,10 +40,5 @@ class Generator(object):
 
                 buffer = BytesIO()
                 image.save(buffer, format="JPEG")
-                image_processed = base64.b64encode(buffer.getvalue())
+                image_processed = base64.urlsafe_b64encode(buffer.getvalue()).decode('ascii')
                 image_data["base64"] = image_processed
-
-                with open("test_image.jpeg", "wb") as file:
-                    file.write(buffer.getvalue())
-
-                return image_data
