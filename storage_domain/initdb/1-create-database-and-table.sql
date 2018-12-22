@@ -4,6 +4,7 @@ CREATE DATABASE memegen;
 \c memegen;
 
 CREATE TABLE memes(
+	id INTEGER PRIMARY KEY,
 	width INTEGER,
 	height INTEGER,
 	base64 TEXT,
