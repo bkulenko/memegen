@@ -1,11 +1,11 @@
 FROM python:3.7.1-stretch
 
-WORKDIR /app
+WORKDIR /generator_domain
 
-COPY . /app
+COPY . /generator_domain
 
 RUN pip install -r requirements.txt
 
-EXPOSE 80
+EXPOSE 8000
 
 CMD ["python", "run.py"]

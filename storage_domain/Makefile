@@ -1,5 +1,5 @@
 TEST_PATH=./tests
-PROJECT_NAME=generator_domain
+PROJECT_NAME=storage_domain
 
 .PHONY: test clean-pyc develop codestyle install
 
@@ -37,8 +37,8 @@ run:
 
 local:
 	@(\
-		docker build -t generator_domain .; \
-		docker run -d -p 4000:8000 --name generator_domain generator_domain; \
+		docker build -t storage_domain .; \
+		docker run -d -p 5000:8000 --name storage_domain storage_domain; \
 	)
 
 	

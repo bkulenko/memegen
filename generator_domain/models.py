@@ -9,12 +9,15 @@ class BaseImageClass(object):
                  height=None,
                  base64=None,
                  mimetype=None,
-                 uid=None,):
-
+                 top_text=None,
+                 bottom_text=None):
+0
         self.width = width
         self.height = height
         self.base64 = base64
         self.mimetype = mimetype
+        self.top_text = top_text
+        self.bottom_text = bottom_text
         self.uid = self.make_uid()
 
     def make_uid(self, prefix="img"):
