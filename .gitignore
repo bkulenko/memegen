@@ -2,3 +2,5 @@ __pycache__
 *.jpeg
 *.txt
 *pytest*
+*.idea*
+.gitignore
