@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine("postgresql://postgres@localhost:5432/memegen", echo=True)
 Base = declarative_base(engine)
 
+
 class Memes(Base):
 
     __tablename__ = 'memes'
@@ -36,15 +37,10 @@ class Memes(Base):
         self.base64_200_thumb = base64_200_thumb
 
     def serialise(self):
-        return {
-            "id": self.id,
-            "width": self.width,
-            "height": self.height,
-            "base64": self.base64,
-            "mimetype": self.mimetype,
-            "top_text": self.top_text,
-            "bottom_text": self.bottom_text,
-            "uid": self.uid,
-            "base64_600_thumb": self.base64_600_thumb,
-            "base64_200_thumb": self.base64_200_thumb
-        }
+        serialised = {}
+        for key in self.__dict__.keys():
+            serialised[key] = self.__dict__[key]
+
+        serialised.pop('_sa_instance_state', None)
+
+        return serialised

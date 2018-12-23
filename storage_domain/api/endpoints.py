@@ -12,7 +12,6 @@ class StorageEndpoint(MethodView):
 
         session = loadSession()
         queryset = session.query(Memes).all()
-
         queryset = [item.serialise() for item in queryset]
 
         return jsonify(queryset)
