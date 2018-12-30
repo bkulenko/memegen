@@ -35,6 +35,8 @@ Storage domain uses and queries its PostreSQL database to save data sent by Gene
 
 Each domain can by ran as a discrete microservice. Each one includes a Makefile which automates testing, code style checking, runs the domain locally, deploys it and prepares development environment.
 
+Before running any of following commands, run `setup.sh` script located in main directory. Make sure you run it directly from that directory!
+
 - `make develop` prepares virtual environment and installs requirements
 
 - `make test` runs unittests based on pytest and pytest coverage extension
