@@ -1,0 +1,13 @@
+Click==7.0
+Django==2.1.4
+importmagic3==0.2.0
+jedi==0.13.2
+log-colorizer==1.8.6
+parso==0.3.1
+Pillow==5.3.0
+python-magic==0.4.15
+pytz==2018.7
+spark-parser==1.8.7
+uncompyle6==3.2.5
+wdb==3.2.5
+xdis==3.8.9
