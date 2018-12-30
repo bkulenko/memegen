@@ -1,5 +1,6 @@
 TEST_PATH=./tests
 PROJECT_NAME=generator_domain
+WORKON = ~/venv
 
 .PHONY: test clean-pyc develop codestyle install
 

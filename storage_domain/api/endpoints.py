@@ -1,3 +1,7 @@
+import json
+
+from flask import request
+
 from flask.views import MethodView
 from flask.json import jsonify
 
@@ -15,3 +19,15 @@ class StorageEndpoint(MethodView):
         queryset = [item.serialise() for item in queryset]
 
         return jsonify(queryset)
+
+    def post(self):
+        data = json.loads(request.data)
+        session = loadSession()
+        meme = Memes(data)
+        try:
+            session.add(meme)
+            session.commit()
+        except:
+            session.rollback()
+        finally:
+            session.close()

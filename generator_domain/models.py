@@ -11,7 +11,6 @@ class BaseImageClass(object):
                  mimetype=None,
                  top_text=None,
                  bottom_text=None):
-0
         self.width = width
         self.height = height
         self.base64 = base64

@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, MetaData, Table
-from sqlalchemy.orm import mapper, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 def loadSession():
