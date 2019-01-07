@@ -10,7 +10,7 @@ from PIL import Image, ImageFont, ImageDraw
 class Generator(object):
 
     def __call__(self, image_data):
-        return self._add_text(image_data)
+        self._add_text(image_data)
 
     def _add_text(self, image_data):
             if not image_data.get('top_text') and not image_data.get('bottom_text'):

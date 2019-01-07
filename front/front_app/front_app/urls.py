@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import Home, Memegen
+from app.views import Home, Listing, Memegen
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('memegen/', Memegen.as_view()),
-    path('', Home.as_view())
+    path('', Home.as_view()),
+    path('listing/', Listing.as_view())
 
 ]
