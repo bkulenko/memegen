@@ -1,0 +1,15 @@
+.btn-menu{
+	background: #3bb;
+	border: 2px solid #2ad;
+	height: 30px;
+	width: 120px;
+	color: white;
+	text-align: center;
+	margin-right: -1px;
+	padding: 5px;
+}
+
+.btn-menu:hover{
+	background: #3aa ;
+	color: black;
+}

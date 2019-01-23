@@ -1,5 +1,4 @@
-TEST_PATH=./tests
-PROJECT_NAME=generator_domain
+PROJECT_NAME=front
 WORKON = ~/venv
 
 .PHONY: test clean-pyc develop codestyle install
