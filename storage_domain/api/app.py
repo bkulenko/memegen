@@ -4,7 +4,7 @@ import sys
 from flask import Flask
 from flask_cors import CORS, cross_origin
 
-from api.endpoints import StorageEndpoint
+from api.endpoints import StorageEndpoint, StorageDetail
 from api.config import Config
 
 
@@ -22,5 +22,6 @@ def make_app(test_config=None,
         app.config.from_mapping(test_config)
 
     app.add_url_rule('/storage/', view_func=StorageEndpoint.as_view('storage_endpoint'))
+    app.add_url_rule('/storage/<uid>', view_func=StorageDetail.as_view('storage_detail'))
 
     return app

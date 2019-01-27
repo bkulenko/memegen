@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import audoBind from 'react-autobind';
 import './index.css';
 
 let config = require('./config/config.json')
@@ -8,12 +9,10 @@ let config = require('./config/config.json')
 function ListingItem(props){
     return(
         <div className="listingItem">
-            OBRAZEK HERE
-            <img src={props.image} alt=""/>
+            {props.image}
         </div>
     );
 }
-
 
 class Site extends React.Component {
     render(){
@@ -33,9 +32,6 @@ class Menu extends React.Component{
             <button className="btn-menu" onClick={() => renderForm()}>
                 Generuj mem
             </button>
-            <button className="btn-menu" >
-                Pokaż memy
-            </button>
         </div>
         );
     }
@@ -50,10 +46,30 @@ class Listing extends React.Component{
         super(props);
         this.state = {
             items: [{base64: ""}],
-        };
+        }
+        this.items = []
+        this.updateListing=this.updateListing.bind(this)
+        this.getListing=this.getListing.bind(this)
     }
-    getListing(){
-        return null;
+
+    queryButton(){
+        return(
+            <button className="btn-menu" onClick={this.updateListing}>
+                Pokaż memy    
+            </button>
+        );
+    }
+    getListing = () => {
+        axios.get(config.storage_queryall).then(response=>{
+        this.res = response.data
+        console.log(this.res)
+        return this.res;
+        })
+    }
+
+    updateListing(){
+        let data;
+        this.getListing().then(result => {data = result})
     }
     renderListingItem(i){
         return(
@@ -63,19 +79,17 @@ class Listing extends React.Component{
         )
     }
     render(){
-        let items = []
         return(
             <div>
-                {console.log(this.state.items)}
+                {this.queryButton()}
                 {this.renderListingItem(0)}
-                
-
             </div>
 
         );
         
     }
 }
+
 
 
 

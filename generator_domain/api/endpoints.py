@@ -5,7 +5,7 @@ from flask import request, jsonify
 from flask.views import MethodView
 
 from api.config import Config
-from api.utils import importer
+from api.utils import importer, poster
 
 Validator = importer(**Config.validator_class)
 Generator = importer(**Config.generator_class)
@@ -25,4 +25,5 @@ class GeneratorEndpoint(MethodView):
         self._validator(data)
         self._generator(data)
         self._thumbnailer(data)
+        poster(data)
         return jsonify(data)

@@ -7,3 +7,7 @@ class Config(object):
     thumbnailer_class = {"package": "Thumbnailer", "name": "generator_domain.thumbnailer"}
     host = "0.0.0.0"
     port = 8000
+    dbschema = "http://"
+    dbhost = "localhost"
+    dbport = "8000"
+    dbendpoint = "storage"

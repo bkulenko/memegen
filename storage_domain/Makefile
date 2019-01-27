@@ -38,7 +38,7 @@ run:
 local:
 	@(\
 		docker build -t storage_domain .; \
-		docker run -d -p 5000:8000 --name storage_domain storage_domain; \
+		docker run -d -p 8000:8000 --name storage_domain storage_domain; \
 	)
 
 	

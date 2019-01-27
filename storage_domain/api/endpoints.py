@@ -31,3 +31,13 @@ class StorageEndpoint(MethodView):
             session.rollback()
         finally:
             session.close()
+
+class StorageDetail(MethodView):
+    methods = ["GET"]
+
+    def get(self, uid):
+        session = loadSession()
+        memeDetail = session.query(Memes).filter_by(uid=uid).first()
+        memeDetail = memeDetail.serialise()
+
+        return jsonify(memeDetail)
