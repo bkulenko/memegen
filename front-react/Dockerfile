@@ -4,8 +4,9 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apt-get install npm
+RUN apt-get update
+RUN apt-get install npm -y
 
 EXPOSE 3000
 
-CMD ['npm', 'run']
+RUN npm start 0.0.0.0
