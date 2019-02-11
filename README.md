@@ -5,7 +5,6 @@
 A meme generator site written in Python, based on principles of DDD and TDD. It consists of 4 different domains running on separate Docker containers:
 - Front, based on Django
 - Generator domain, based on Flask and Pillow
-- Listing domain, based on Flask
 - Storage domain, based on Flask and SQLAlchemy
 
 ## Functionality
@@ -22,10 +21,6 @@ Generator receives data from Front and processes it in three steps:
 - Thumbnail generation
 
 If all three steps are successfull, it then sends image data containing the meme and thumbnails to Storage domain through an adapter.
-
-# Listing
-
-Listing domain queries the Storage domain based on user's inputs and returns requested data back to Front domain.
 
 # Storage
 
